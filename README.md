@@ -54,4 +54,4 @@ https://www.geeksforgeeks.org/weight-initialization-techniques-for-deep-neural-n
    
 https://github.com/ablanco1950/LicensePlate_Labeled_MaxFilters
 
-
+https://github.com/ablanco1950/OCRFromScratch_Chars74K_SpanishLicensePlate
