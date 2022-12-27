@@ -40,6 +40,8 @@ This model has been obtained by running the OCRKaggle.py program, which is a cop
 
 It also requires that the file directory, with the kaggle characters used to train the model, be in C:, although its location can be changed by altering line 30.
 
+Te ModelOCRKaggle42Epoch14HITS.h5 file is created in the archive.data directory and must be passed to the program's execution directory
+
 The values obtained in the CNN model vary from one execution to another of OCRKaggle.py, The model that has obtained the best hit rate, 14 hits among 21 images has been saved as ModelOCRKaggle42Epoch14HITS
 
 References:
