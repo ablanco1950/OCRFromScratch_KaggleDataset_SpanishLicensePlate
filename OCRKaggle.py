@@ -3,6 +3,14 @@
 Created on Fri Dec 23 12:18:44 2022
 
 @author: https://www.kaggle.com/code/preatcher/ocr-training
+
+with the following changes introduced by Alfonso Blanco García:
+    The number of filters is reduced to 8 from 32
+    the kernel is increased to (5,5) from (3,3)
+    the Dense with activation relu is increased to 250 from 100
+    the kernel_initializer of last dense with activation softmax is set to
+    initializer instead of he_uniform
+    
 """
 
 # This Python 3 environment comes with many helpful analytics libraries installed
@@ -148,8 +156,10 @@ plot_images(sample_training_images[:7], IMG_WIDTH, IMG_HEIGHT)
 from tensorflow.keras.optimizers import SGD
 # define cnn model
 def define_model():
+    initializer = tf.keras.initializers.Zeros()
     model = Sequential()
-    model.add(Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', input_shape=(28, 28, 1)))
+    model.add(Conv2D(8, (5,5), activation='relu', kernel_initializer='he_uniform', input_shape=(28, 28, 1)))
+   
     model.add(MaxPooling2D((2, 2)))
     model.add(Flatten())
     #model.add(Dense(1000, activation='relu', kernel_initializer='he_uniform'))
@@ -157,8 +167,8 @@ def define_model():
    
     #initializer = tf.keras.initializers.RandomUniform(minval=0.,maxval=1.)
     #model.add(Dense(100, activation='relu', kernel_initializer='he_uniform'))
-    initializer = tf.keras.initializers.Zeros()
-    model.add(Dense(100, activation='relu'))
+    model.add(Dense(250, activation='relu', kernel_initializer='he_uniform'))
+    #model.add(Dense(100, activation='relu'))
     model.add(Dense(36, activation='softmax', kernel_initializer=initializer))
     return model
 #     # compile model
