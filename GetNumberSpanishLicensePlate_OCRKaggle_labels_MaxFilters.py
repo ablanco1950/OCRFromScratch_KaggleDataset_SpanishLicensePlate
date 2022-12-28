@@ -13,7 +13,7 @@ from tensorflow import keras
 
 
 # 14 HITS
-modelCNN = keras.models.load_model('ModelOCRKaggle42Epoch14HITS.h5')
+modelCNN = keras.models.load_model('ModelOCRKaggle42Epoch15HITS.h5')
 
 MinRowBlack=175
 
