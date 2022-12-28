@@ -1,4 +1,4 @@
-OCR from scratch using Kaggle dataset dwonloaded from https://www.kaggle.com/code/preatcher/ocr-training  applied to the case of Spanish car license plates or any other with format NNNNAAA. The hit rate is lower than that achieved by pytesseract: in a test with 21 images, 14 hits are reached while with pytesseract the hits are 17 https://github.com/ablanco1950/LicensePlate_Labeled_MaxFilters.
+OCR from scratch using Kaggle dataset dwonloaded from https://www.kaggle.com/code/preatcher/ocr-training  applied to the case of Spanish car license plates or any other with format NNNNAAA. The hit rate is lower than that achieved by pytesseract: in a test with 21 images, 15 hits are reached while with pytesseract the hits are 17 https://github.com/ablanco1950/LicensePlate_Labeled_MaxFilters.
 
 Requirements:
 
@@ -22,7 +22,7 @@ import cv2
 
 Download from https://www.kaggle.com/datasets/preatcher/standard-ocr-dataset the archive.zip file, unzip it.
 
-In the download directory you should find the downloaded test6Training.zip (roboflow.com) and must unzip folder: test6Training with all its subfolders, containing the images for the test and its labels. This directory must be in the same directory where is the program GetNumberSpanishLicensePlate_OCRKaggle_labels_MaxFilters.py ( unziping may create two directories with name test6Training and the images may not be founded when executing it, it would be necessary copy of inner directory test6Training in the same directory where is OCRfromScratchKerasCNN_Chars74k_SpanishLicensePlate.py)
+In the download directory you should find the downloaded test6Training.zip (roboflow.com) and must unzip folder: test6Training with all its subfolders, containing the images for the test and its labels. This directory must be in the same directory where is the program GetNumberSpanishLicensePlate_OCRKaggle_labels_MaxFilters.py ( unziping may create two directories with name test6Training and the images may not be founded when executing it, it would be necessary copy of inner directory test6Training in the same directory where is  the mentioned  program GetNumberSpanishLicensePlate_OCRKaggle_labels_MaxFilters.py)
 
 Operative:
 
@@ -34,13 +34,13 @@ As output, the LicenseResults.txt file is also obtained with the relation betwee
 
 Observations:
 
-The program uses ModelOCRKaggle42Epoch14HITS.h5 
+The program uses ModelOCRKaggle42Epoch15HITS.h5 
 
 This model has been obtained by running the OCRKaggle.py program, which is a copy of the one found at https://www.kaggle.com/code/preatcher/ocr-training, only the initializer has been changed.
 
 It also requires that the file directory, with the kaggle characters used to train the model, be in C:, although its location can be changed by altering line 30.
 
-Te ModelOCRKaggle42Epoch14HITS.h5 file is created in the archive.data directory and must be passed to the program's execution directory
+Te ModelOCRKaggle42Epoch15HITS.h5 file is created in the archive.data directory and must be passed to the program's execution directory
 
 The values obtained in the CNN model vary from one execution to another of OCRKaggle.py, The model that has obtained the best hit rate, 14 hits among 21 images has been saved as ModelOCRKaggle42Epoch14HITS
 
