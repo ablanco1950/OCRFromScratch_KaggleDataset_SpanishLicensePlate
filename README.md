@@ -36,7 +36,17 @@ Observations:
 
 The program uses ModelOCRKaggle42Epoch15HITS.h5 
 
-This model has been obtained by running the OCRKaggle.py program, which is a copy of the one found at https://www.kaggle.com/code/preatcher/ocr-training, only the initializer has been changed.
+This model has been obtained by running the OCRKaggle.py program, which is a copy of the one found at https://www.kaggle.com/code/preatcher/ocr-training, 
+
+with the following changes
+    The number of filters is reduced to 8 from 32
+    
+    the kernel is increased to (5,5) from (3,3)
+    
+    the Dense with activation relu is increased to 250 from 100
+    
+    the kernel_initializer of last dense with activation softmax is set to
+    initializer instead of he_uniform
 
 It also requires that the file directory, with the kaggle characters used to train the model, be in C:, although its location can be changed by altering line 30.
 
