@@ -101,3 +101,4 @@ https://stackoverflow.com/questions/71404206/python-cnn-why-i-get-different-resu
 
 https://stackoverflow.com/questions/46407457/error-in-creating-custom-initializer-using-get-variable-with-keras
 
+https://keras.io/api/layers/initializers/
