@@ -26,7 +26,22 @@ In the download directory you should find the downloaded test6Training.zip (robo
 
 Operative:
 
-Execute the program: GetNumberSpanishLicensePlate_OCRKaggle_labels_MaxFilters.py
+Execute the program:
+
+OCRKaggle.py
+
+that creates the model ModelOCRKaggle25Epoch.h5 
+
+It requires that the file directory, with the kaggle characters used to train the model be in C:, although its location can be changed by altering line 30
+ of OCRKaggle.py.
+
+this model  is created in the archive/data directory and must be passed to the program's execution directory, the directory where is GetNumberSpanishLicensePlate_OCRKaggle_labels_MaxFilters.py
+
+Execute:
+
+GetNumberSpanishLicensePlate_OCRKaggle_labels_MaxFilters.py
+
+That uses the model ModelOCRKaggle25Epoch.h5  create in the step before
 
 Each car license plate appears on the screen with the text that could have been recognized from the image and the final result assigning the car license plate that has been recognized the most times.
 
@@ -34,11 +49,11 @@ As output, the LicenseResults.txt file is also obtained with the relation betwee
 
 Observations:
 
-The program uses ModelOCRKaggle42Epoch15HITS.h5 
 
-This model has been obtained by running the OCRKaggle.py program, which is a copy of the one found at https://www.kaggle.com/code/preatcher/ocr-training, 
+The OCRKaggle.py program, which is a copy of the one found at https://www.kaggle.com/code/preatcher/ocr-training, 
 
-with the following changes
+with the following changes:
+
     The number of filters is reduced to 8 from 32
     
     the kernel is increased to (5,5) from (3,3)
@@ -48,11 +63,10 @@ with the following changes
     the kernel_initializer of last dense with activation softmax is set to
     initializer instead of he_uniform
 
-It also requires that the file directory, with the kaggle characters used to train the model, be in C:, although its location can be changed by altering line 30.
-
-Te ModelOCRKaggle42Epoch15HITS.h5 file is created in the archive.data directory and must be passed to the program's execution directory
-
-The values obtained in the CNN model vary from one execution to another of OCRKaggle.py, The model that has obtained the best hit rate, 14 hits among 21 images has been saved as ModelOCRKaggle42Epoch14HITS
+    To avoid that the values obtained in the CNN model vary from one execution to another of OCRKaggle.py, 
+    the weights have to be initialized to a fixed value by the added instruction
+    (https://stackoverflow.com/questions/46407457/error-in-creating-custom-initializer-using-get-variable-with-keras)
+    initializer =tf.keras.initializers.glorot_normal()
 
 References:
 
@@ -67,3 +81,5 @@ https://www.geeksforgeeks.org/weight-initialization-techniques-for-deep-neural-n
 https://github.com/ablanco1950/LicensePlate_Labeled_MaxFilters
 
 https://github.com/ablanco1950/OCRFromScratch_Chars74K_SpanishLicensePlate
+
+https://stackoverflow.com/questions/46407457/error-in-creating-custom-initializer-using-get-variable-with-keras
