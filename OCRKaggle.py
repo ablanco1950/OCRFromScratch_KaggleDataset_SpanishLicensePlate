@@ -3,14 +3,6 @@
 Created on Fri Dec 23 12:18:44 2022
 
 @author: https://www.kaggle.com/code/preatcher/ocr-training
-
-with the following changes introduced by Alfonso Blanco García:
-    The number of filters is reduced to 8 from 32
-    the kernel is increased to (5,5) from (3,3)
-    the Dense with activation relu is increased to 250 from 100
-    the kernel_initializer of last dense with activation softmax is set to
-    initializer instead of he_uniform
-    
 """
 
 # This Python 3 environment comes with many helpful analytics libraries installed
@@ -37,9 +29,27 @@ import os
 #os.chdir("../input/standard-ocr-dataset/data")
 os.chdir("C:/archive/data")
 
+
+# https://stackoverflow.com/questions/71404206/python-cnn-why-i-get-different-results-in-different-desktopwhat-can-i-do-to-get
+# Seed value
+# Apparently you may use different seed values at each stage
+seed_value= 0
+
+import random
+random.seed(seed_value)
+
+np.random.seed(seed_value)
+
+# 4. Set the `tensorflow` pseudo-random generator at a fixed value
+import tensorflow as tf
+tf.random.set_seed(seed_value)
+# for later versions: 
+# tf.set_random_seed(seed_value)
+
+
 #importing Necessary Modules
 
-import tensorflow as tf
+#import tensorflow as tf
 import datetime
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D
@@ -156,11 +166,17 @@ plot_images(sample_training_images[:7], IMG_WIDTH, IMG_HEIGHT)
 from tensorflow.keras.optimizers import SGD
 # define cnn model
 def define_model():
-    initializer = tf.keras.initializers.Zeros()
+    # https://keras.io/api/layers/initializers/
+    #initializer=tf.keras.initializers.RandomNormal(stddev=0.01),
+    #https://stackoverflow.com/questions/46407457/error-in-creating-custom-initializer-using-get-variable-with-keras
+    initializer =tf.keras.initializers.glorot_normal()
+    #initializer = tf.keras.initializers.Zeros()
     model = Sequential()
+   
+    
     model.add(Conv2D(8, (5,5), activation='relu', kernel_initializer='he_uniform', input_shape=(28, 28, 1)))
    
-    model.add(MaxPooling2D((2, 2)))
+    model.add(MaxPooling2D((3, 3)))
     model.add(Flatten())
     #model.add(Dense(1000, activation='relu', kernel_initializer='he_uniform'))
     # https://www.geeksforgeeks.org/weight-initialization-techniques-for-deep-neural-networks/
@@ -190,17 +206,16 @@ my_callback=[EarlyStop_callback,checkpoint]
 
 # Actual training of our model
  
-model.compile(optimizer=SGD(lr=0.01, momentum=0.9),
+model.compile(optimizer=SGD(learning_rate=0.01, momentum=0.9),
               loss=tf.keras.losses.CategoricalCrossentropy(),
               metrics=['categorical_accuracy'])
 
-history = model.fit_generator(
+history = model.fit(
     train_data_gen,
     steps_per_epoch=train_data_gen.samples // batch_size,
-    epochs=42,
+    epochs=25,
     validation_data=val_data_gen,
-    validation_steps=val_data_gen.samples // batch_size,
-    #callbacks = my_callback
+    callbacks = my_callback
     )
 
-model.save("ModelOCRKaggle42Epoch.h5")
+model.save("ModelOCRKaggle25Epoch.h5")
