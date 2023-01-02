@@ -72,14 +72,13 @@ with the following changes:
     # Apparently you may use different seed values at each stage
     seed_value= 0
 
-
     random.seed(seed_value)
 
-     np.random.seed(seed_value)
+    np.random.seed(seed_value)
 
-   # Set the `tensorflow` pseudo-random generator at a fixed value
+    # Set the `tensorflow` pseudo-random generator at a fixed value
  
-   tf.random.set_seed(seed_value)
+    tf.random.set_seed(seed_value)
    
     (https://stackoverflow.com/questions/46407457/error-in-creating-custom-initializer-using-get-variable-with-keras)
     initializer =tf.keras.initializers.glorot_normal()
