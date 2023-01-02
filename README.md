@@ -20,6 +20,8 @@ from tensorflow.keras.layers import Dense, Dropout
 
 import cv2
 
+import random
+
 Download from https://www.kaggle.com/datasets/preatcher/standard-ocr-dataset the archive.zip file, unzip it.
 
 In the download directory you should find the downloaded test6Training.zip (roboflow.com) and must unzip folder: test6Training with all its subfolders, containing the images for the test and its labels. This directory must be in the same directory where is the program GetNumberSpanishLicensePlate_OCRKaggle_labels_MaxFilters.py ( unziping may create two directories with name test6Training and the images may not be founded when executing it, it would be necessary copy of inner directory test6Training in the same directory where is  the mentioned  program GetNumberSpanishLicensePlate_OCRKaggle_labels_MaxFilters.py)
@@ -65,6 +67,20 @@ with the following changes:
 
     To avoid that the values obtained in the CNN model vary from one execution to another of OCRKaggle.py, 
     the weights have to be initialized to a fixed value by the added instruction
+    ( https://stackoverflow.com/questions/71404206/python-cnn-why-i-get-different-results-in-different-desktopwhat-can-i-do-to-get)
+    # Seed value
+    # Apparently you may use different seed values at each stage
+    seed_value= 0
+
+
+    random.seed(seed_value)
+
+     np.random.seed(seed_value)
+
+   # Set the `tensorflow` pseudo-random generator at a fixed value
+ 
+   tf.random.set_seed(seed_value)
+   
     (https://stackoverflow.com/questions/46407457/error-in-creating-custom-initializer-using-get-variable-with-keras)
     initializer =tf.keras.initializers.glorot_normal()
 
@@ -82,4 +98,7 @@ https://github.com/ablanco1950/LicensePlate_Labeled_MaxFilters
 
 https://github.com/ablanco1950/OCRFromScratch_Chars74K_SpanishLicensePlate
 
+https://stackoverflow.com/questions/71404206/python-cnn-why-i-get-different-results-in-different-desktopwhat-can-i-do-to-get
+
 https://stackoverflow.com/questions/46407457/error-in-creating-custom-initializer-using-get-variable-with-keras
+
