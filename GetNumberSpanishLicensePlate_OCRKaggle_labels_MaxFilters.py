@@ -362,9 +362,9 @@ def FindLicenseNumber (gray,x_center,y_center, width,heigh, x_offset, y_offset, 
                print(Licenses[i] + " detected with FILTRO KAGGLE "+ text) 
     
     #################################################################
-    blur = cv2.GaussianBlur(gray, (3,3), 0)
+    blur = cv2.GaussianBlur(gray, (7,7), 0)
     thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
-
+    
     # Morph open to remove noise and invert image
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3,3))
     opening = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel, iterations=1)
@@ -725,8 +725,9 @@ def ocr(gray1):
        
         lvalid=[]
         
+               
         ret2,gray1 = cv2.threshold(gray1,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-       
+        
         ##############################################
         # remove the dark parts at the beginning
         for j in range(len(gray1)):
