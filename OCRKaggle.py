@@ -3,6 +3,9 @@
 Created on Fri Dec 23 12:18:44 2022
 
 @author: https://www.kaggle.com/code/preatcher/ocr-training
+
+modified by Alfonso Blanco García
+
 """
 
 # This Python 3 environment comes with many helpful analytics libraries installed
